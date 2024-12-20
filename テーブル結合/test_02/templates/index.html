@@ -1,0 +1,38 @@
+{% extends 'template.html' %}
+{% block main %}
+
+<h1>一覧</h1>
+<table style="border-style: solid">
+    <tr>
+        <th>ユーザーID</th>
+        <th>名前</th>
+        <th>住所</th>
+        <th></th>
+    </tr>
+
+    {% for data in user_data %}
+    <tr>
+        <td>{{ data['user_id'] }}</td>
+        <td>{{ data['user_name'] }}</td>
+        <td>{{ data['user_address'] }}</td>
+        <td>
+            <form method="post" action="detail">
+                <input type="hidden" name="user_id" value="{{ data['user_id'] }}">
+                <input type="submit" value="詳細">
+            </form>
+        </td>
+    </tr>
+    {% endfor %}
+
+    <tr>
+        <td></td>
+        <td><input form="insert" name="user_name" required placeholder="名前"></td>
+        <td><input form="insert" name="user_address" required placeholder="住所"></td>
+        <td>
+            <form action="/" id="insert" method="post">
+                <input type="submit" value="追加">
+            </form>
+        </td>
+    </tr>
+</table>
+{% endblock %}

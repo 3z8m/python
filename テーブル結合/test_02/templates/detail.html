@@ -1,0 +1,70 @@
+{% extends 'template.html' %}
+{% block main %}
+
+<h1>詳細</h1>
+
+<a href="/"><button style="margin: 10px 0">一覧に戻る</button></a>
+
+<table>
+    <tr>
+        <th>ユーザーID</th>
+        <th>名前</th>
+        <th>住所</th>
+    </tr>
+    <tr>
+        <td>{{data['user_id']}}</td>
+        <td><input name="user_name" value="{{data['user_name']}}" form="update_form"></td>
+        <td><input name="user_address" value="{{data['user_address']}}" form="update_form"></td>
+    </tr>
+</table>
+<br><br>
+
+<table>
+    <tr>
+        <th>フードID</th>
+        <th>フード名</th>
+        <th></th>
+    </tr>
+    {% for food in food_data %}
+    <tr>
+        <td>{{ food.food_id }}</td>
+        <td>{{ food.food_content }}</td>
+        <td></td>
+    </tr>
+    {% endfor %}
+    <tr>
+        <form action="{{ url_for('add_food') }}" method="post">
+            <td></td>
+            <td>
+                <input type="hidden" name="user_id" value="{{ data.user_id }}">
+                <input type="text" id="food_content" name="food_content">
+            </td>
+            <td><input type="submit" value="追加"></td>
+        </form>
+    </tr>
+</table>
+
+
+<h2>編集</h2>
+<form action="{{ url_for('update_food') }}" method="post">
+    <input type="hidden" name="user_id" value="{{ data.user_id }}">
+    <label for="food_id">フードID:</label>
+    <input type="text" name="food_id" id="food_id">
+    <label for="food_content">フード名:</label>
+    <input type="text" name="food_content" id="food_content">
+    <button type="submit">更新</button>
+</form>
+
+<br>
+
+<form method="post" action="/delete" style="display:inline">
+    <input type="hidden" name="user_id" value="{{ data['user_id'] }}">
+    <input type="submit" value="削除" style="background-color: red;">
+</form>
+
+<form method="post" action="/update" style="display:inline" id="update_form">
+    <input type="hidden" name="user_id" value="{{ data['user_id'] }}">
+    <input type="submit" value="更新">
+</form>
+
+{% endblock %}
