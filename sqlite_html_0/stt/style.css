@@ -1,0 +1,13 @@
+div, li, h3 {
+    padding: 2px;
+    font-size: 20px;
+}
+
+input {
+    border: solid #149 2px;
+    font-size: 19px;
+}
+
+form {
+    margin: 3;
+}

@@ -1,0 +1,9 @@
+■作成日
+2025.01.04
+
+■参考元
+FastAPIとsqlite3による簡単なウェブサイトを実装する
+https://qiita.com/phyblas/items/c3ff92b6dd353f887f1d
+
+■起動
+uvicorn main:app --reload
